@@ -1,11 +1,11 @@
-provider "aws"{
-    region = "us-east-1"
-    profile = "personal-aws-terraform"
+provider "aws" {
+  region  = "us-east-1"
+  profile = "personal-aws-terraform"
 }
 
-provider "godaddy"{
+provider "godaddy" {
 }
 
 provider "mailgun" {
-    api_key = "${var.MAILGUN_API_KEY}"
+  api_key = var.MAILGUN_API_KEY
 }
