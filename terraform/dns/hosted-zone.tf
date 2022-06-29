@@ -1,5 +1,5 @@
 locals {
-  receiving_records_strings = [for record in mailgun_domain.victorbogo-me.receiving_records: "${record.priority} ${record.value}"]
+  receiving_records_strings = [for record in mailgun_domain.victorbogo-me.receiving_records : "${record.priority} ${record.value}"]
 }
 
 resource "aws_route53_zone" "victorbogo-me-public" {
@@ -22,10 +22,10 @@ resource "aws_route53_record" "mailgun-receiving-record" {
 }
 
 resource "aws_route53_record" "mailgun-sending-record" {
-  for_each = {for record in mailgun_domain.victorbogo-me.sending_records:  record.value => record}
-  zone_id = aws_route53_zone.victorbogo-me-public.zone_id
-  name    = each.value.name
-  type    = each.value.record_type
-  ttl     = "300"
-  records = [each.key]
+  for_each = { for record in mailgun_domain.victorbogo-me.sending_records : record.value => record }
+  zone_id  = aws_route53_zone.victorbogo-me-public.zone_id
+  name     = each.value.name
+  type     = each.value.record_type
+  ttl      = "300"
+  records  = [each.key]
 }
