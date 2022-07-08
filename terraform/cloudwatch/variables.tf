@@ -1,3 +1,3 @@
 variable "alarms-email" {
-    type = string
+  type = string
 }
